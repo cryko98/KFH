@@ -10,17 +10,17 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-dojo-black text-white selection:bg-dojo-red selection:text-white font-sans">
+    <div className="min-h-screen bg-dojo-cream text-dojo-ink selection:bg-dojo-red selection:text-white font-sans">
       <Navbar />
       <main>
         <Hero />
         <Chart />
         <Lore />
-        <div className="border-t border-dojo-gray/30"></div>
+        <div className="border-t border-dojo-charcoal/10"></div>
         <MemeGenerator />
-        <div className="border-t border-dojo-gray/30"></div>
+        <div className="border-t border-dojo-charcoal/10"></div>
         <MemeGallery />
-        <div className="border-t border-dojo-gray/30"></div>
+        <div className="border-t border-dojo-charcoal/10"></div>
         <About />
       </main>
       <Footer />
