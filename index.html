@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kung Fu Hamster ($KFH)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'dojo-red': '#D9381E',
+              'dojo-black': '#121212',
+              'dojo-gray': '#1E1E1E',
+              'hamster-orange': '#F2A900',
+              'hamster-gold': '#FFD700',
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Impact', 'sans-serif'],
+            },
+            animation: {
+              'punch': 'punch 0.3s ease-in-out infinite alternate',
+            },
+            keyframes: {
+              punch: {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(5px)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <style>
+      body {
+        background-color: #121212;
+        color: #ffffff;
+      }
+      .scroll-hide::-webkit-scrollbar {
+          display: none;
+      }
+      .text-shadow-glow {
+        text-shadow: 0 0 10px rgba(217, 56, 30, 0.7);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "vite": "https://esm.sh/vite@^7.3.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
