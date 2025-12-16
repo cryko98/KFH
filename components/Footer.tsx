@@ -1,5 +1,6 @@
 import React from 'react';
 import { TOKEN_NAME, SOCIAL_LINKS } from '../constants';
+import { Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -8,7 +9,11 @@ const Footer: React.FC = () => {
         
         <div className="mb-6 md:mb-0 text-center md:text-left">
           <h3 className="text-2xl font-display font-bold text-dojo-ink mb-2">{TOKEN_NAME}</h3>
-          <p className="text-stone-500 text-sm">© {new Date().getFullYear()} All rights reserved in the Dojo.</p>
+          <p className="text-stone-500 text-sm mb-2">© {new Date().getFullYear()} All rights reserved in the Dojo.</p>
+          <a href="mailto:kungfuhamsterfan@gmail.com" className="text-stone-500 hover:text-dojo-red text-sm transition-colors flex items-center justify-center md:justify-start gap-2">
+            <Mail className="w-4 h-4" />
+            kungfuhamsterfan@gmail.com
+          </a>
         </div>
 
         <div className="flex space-x-6">
