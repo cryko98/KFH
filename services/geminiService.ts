@@ -1,5 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
-import { HERO_IMAGE_URL } from "../constants";
+import { GENERATOR_REF_URL } from "../constants";
 
 // Helper to convert image URL to Base64
 const imageUrlToBase64 = async (url: string): Promise<string> => {
@@ -30,8 +30,8 @@ export const generateKungFuMeme = async (prompt: string): Promise<string> => {
   // Use the latest standard model for image tasks
   const model = 'gemini-2.5-flash-image';
 
-  // Try to get the reference image
-  const referenceImageBase64 = await imageUrlToBase64(HERO_IMAGE_URL);
+  // Try to get the reference image (the Goyim meme character)
+  const referenceImageBase64 = await imageUrlToBase64(GENERATOR_REF_URL);
 
   try {
     let contents;
@@ -42,33 +42,33 @@ export const generateKungFuMeme = async (prompt: string): Promise<string> => {
         parts: [
           {
             inlineData: {
-              mimeType: 'image/png',
+              mimeType: 'image/jpeg',
               data: referenceImageBase64
             }
           },
           {
-            text: `Generate a photorealistic, lifelike image based on this reference character. 
-            The character is a real hamster (not a cartoon) in a dynamic Kung Fu action pose.
+            text: `Generate a new image based on this reference character.
+            The character is a stylised, meme-like figure often associated with the 'Goyim' meme.
             
             Action/Scene: ${prompt}.
             
             Guidelines:
-            - Style: Photorealistic, Cinematic Lighting, High Detail, 8k, Action Shot.
-            - Character: Must look like the reference hamster but lifelike.
-            - Atmosphere: Intense, Epic, Kung Fu Movie aesthetic.
-            - Composition: Centered, dynamic angles.`
+            - Style: Keep the meme aesthetic, slightly hand-drawn or digital art style similar to the reference.
+            - Character: Must resemble the reference character provided.
+            - Atmosphere: Funny, crypto-native, viral.
+            - Composition: Clear subject.`
           }
         ]
       };
     } else {
-      // Fallback: Text-to-Image using the same model if CORS blocks the reference image fetch
+      // Fallback: Text-to-Image
       contents = {
         parts: [
           {
-            text: `Generate a photorealistic image.
-            Subject: A photorealistic, lifelike Kung Fu Hamster with fluffy golden-brown fur and an orange headband.
+            text: `Generate a meme image.
+            Subject: A funny 'Goyim' meme character (often depicted as a joyful, slightly awkward smiling figure).
             Action: ${prompt}. 
-            Style: Cinematic, 8k, National Geographic meet Kung Fu Panda, realistic textures, dramatic lighting.`
+            Style: Viral internet meme style, digital art.`
           }
         ]
       };

@@ -5,23 +5,21 @@ import Chart from './components/Chart';
 import About from './components/About';
 import Lore from './components/Lore';
 import MemeGenerator from './components/MemeGenerator';
-import MemeGallery from './components/MemeGallery';
 import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-dojo-cream text-dojo-ink selection:bg-dojo-red selection:text-white font-sans">
+    <div className="min-h-screen bg-goyim-light text-goyim-dark selection:bg-goyim-red selection:text-white font-sans bg-star-pattern">
       <Navbar />
       <main>
         <Hero />
-        <Chart />
         <Lore />
-        <div className="border-t border-dojo-charcoal/10"></div>
+        <div className="border-t border-goyim-red/10"></div>
         <MemeGenerator />
-        <div className="border-t border-dojo-charcoal/10"></div>
-        <MemeGallery />
-        <div className="border-t border-dojo-charcoal/10"></div>
+        <div className="border-t border-goyim-red/10"></div>
         <About />
+        <div className="border-t border-goyim-red/10"></div>
+        <Chart />
       </main>
       <Footer />
     </div>

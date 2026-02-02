@@ -4,15 +4,15 @@ import { Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-dojo-paper border-t border-stone-200 py-12">
+    <footer className="bg-white border-t border-goyim-red/20 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
         
         <div className="mb-6 md:mb-0 text-center md:text-left">
-          <h3 className="text-2xl font-display font-bold text-dojo-ink mb-2">{TOKEN_NAME}</h3>
-          <p className="text-stone-500 text-sm mb-2">© {new Date().getFullYear()} All rights reserved in the Dojo.</p>
-          <a href="mailto:kungfuhamsterfan@gmail.com" className="text-stone-500 hover:text-dojo-red text-sm transition-colors flex items-center justify-center md:justify-start gap-2">
+          <h3 className="text-2xl font-display font-bold text-goyim-red mb-2">{TOKEN_NAME}</h3>
+          <p className="text-stone-500 text-sm mb-2">© {new Date().getFullYear()} The Nations. All rights reserved.</p>
+          <a href="mailto:Goyimonsolana@gmail.com" className="text-stone-500 hover:text-goyim-red text-sm transition-colors flex items-center justify-center md:justify-start gap-2">
             <Mail className="w-4 h-4" />
-            kungfuhamsterfan@gmail.com
+            Goyimonsolana@gmail.com
           </a>
         </div>
 
@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
              href={SOCIAL_LINKS.twitter} 
              target="_blank" 
              rel="noopener noreferrer"
-             className="text-stone-500 hover:text-dojo-red transition-colors"
+             className="text-stone-500 hover:text-goyim-red transition-colors"
              aria-label="X (formerly Twitter)"
            >
              {/* X Logo SVG */}
