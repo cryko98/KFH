@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Goyim ($goyim)</title>
+    <title>$GOYIM</title>
     <link rel="icon" type="image/png" href="https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/ping%20(7).png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -16,15 +16,14 @@
               'zion-gray': '#2A2A2A',
               'zion-white': '#FFFFFF',
               'zion-silver': '#E5E5E5',
-              'zion-gold': '#D4AF37', // Metallic Gold for Jewish financier aesthetic
+              'zion-gold': '#D4AF37', // Luxury gold
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
-              display: ['Playfair Display', 'serif'], // Luxurious serif for headers
+              display: ['Playfair Display', 'serif'],
               mono: ['JetBrains Mono', 'monospace'],
             },
             backgroundImage: {
-              // Subtle Star of David pattern
               'star-pattern-dark': "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cpath d=\\'M30 0l7.5 22.5h22.5l-18 13.5 7.5 22.5-18-13.5-18 13.5 7.5-22.5-18-13.5h22.5z\\' fill=\\'%23D4AF37\\' fill-opacity=\\'0.03\\'/%3E%3C/svg%3E')",
               'tallit-stripes': "repeating-linear-gradient(90deg, transparent, transparent 49px, #121212 49px, #121212 51px)",
               'luxury-gradient': "linear-gradient(135deg, #121212 0%, #050505 100%)",
@@ -35,6 +34,7 @@
               'reveal': 'reveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
               'glow': 'glow 3s ease-in-out infinite alternate',
               'scroll-text': 'scrollText 20s linear infinite',
+              'shine': 'shine 8s linear infinite',
             },
             keyframes: {
               float: {
@@ -56,6 +56,10 @@
               scrollText: {
                 '0%': { transform: 'translateX(0)' },
                 '100%': { transform: 'translateX(-50%)' },
+              },
+              shine: {
+                '0%': { backgroundPosition: '200% center' },
+                '100%': { backgroundPosition: '-200% center' },
               }
             }
           },
@@ -80,6 +84,9 @@
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .perspective-1000 {
+        perspective: 1000px;
       }
       /* Reveal on scroll observer classes */
       .reveal-on-scroll {

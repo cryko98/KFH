@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { LORE_IMAGE_URL } from '../constants';
-import { FileText, Scroll, Lock } from 'lucide-react';
+import { Lock, Scroll } from 'lucide-react';
 
 const Lore: React.FC = () => {
   useEffect(() => {
@@ -37,21 +37,24 @@ const Lore: React.FC = () => {
 
         <div className="grid md:grid-cols-2 gap-16 items-start">
             
-            {/* Left: The Evidence */}
+            {/* Left: The Evidence Image */}
             <div className="reveal-on-scroll order-2 md:order-1">
                  <div className="relative group">
                     <div className="absolute -inset-2 bg-gradient-to-r from-zion-gold to-transparent opacity-20 blur-lg group-hover:opacity-40 transition-opacity"></div>
-                    <div className="relative border border-white/10 bg-black p-2">
+                    <div className="relative border border-white/10 bg-black p-2 shadow-2xl">
                         <div className="absolute top-4 left-4 z-20 bg-red-600 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest shadow-lg">
                            Top Secret
                         </div>
-                        <img src={LORE_IMAGE_URL} alt="Goyim Lore" className="w-full h-auto object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-700" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
                         
-                        {/* Overlay text */}
-                        <div className="absolute bottom-6 left-6 right-6">
-                           <p className="font-mono text-xs text-zion-gold mb-1">EVIDENCE #8821</p>
-                           <p className="font-display text-xl text-white">"The files were not meant to be seen."</p>
+                        <img 
+                          src={LORE_IMAGE_URL} 
+                          alt="Confidential Evidence" 
+                          className="w-full h-auto object-cover opacity-90 border border-white/5" 
+                        />
+
+                        <div className="absolute bottom-6 left-6">
+                           <p className="font-mono text-xs text-yellow-600 mb-1 bg-black/50 px-2 inline-block">EVIDENCE #8821</p>
+                           <p className="font-display text-xl text-black bg-white/80 px-2 inline-block font-bold">"The files were not meant to be seen."</p>
                         </div>
                     </div>
                  </div>
@@ -65,7 +68,7 @@ const Lore: React.FC = () => {
                  </div>
             </div>
 
-            {/* Right: The Narrative */}
+            {/* Right: The Narrative Text */}
             <div className="text-left order-1 md:order-2 space-y-10 reveal-on-scroll">
                 
                 <div className="relative pl-8 border-l border-zion-gold/30">
@@ -81,7 +84,7 @@ const Lore: React.FC = () => {
                         </p>
                         
                         <p>
-                           Deep within the leaked Epstein files, a recurring theme surfaced. The distinct separation between the "architects" and the "cattle." The term <span className="text-zion-gold font-serif italic">"goyim"</span> was reportedly used with disdain, a mockery of the masses.
+                           Deep within the leaked Epstein files, a recurring theme surfaced. The distinct separation between the "architects" and the "cattle." The term <em className="text-zion-gold">"goyim"</em> was reportedly used with disdain, a mockery of the masses.
                         </p>
                         
                         <blockquote className="bg-white/5 p-6 border-l-2 border-zion-gold my-6 font-display italic text-xl text-white">

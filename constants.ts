@@ -1,38 +1,39 @@
-export const TOKEN_NAME = "Goyim";
-export const TOKEN_TICKER = "$goyim";
+export const TOKEN_NAME = "$GOYIM";
+export const TOKEN_TICKER = "$GOYIM";
 export const CA = "9S8edqWxoWz5LYLnxWUmWBJnePg35WfdYQp7HQkUpump";
+
+// Updated images as requested
 export const HERO_IMAGE_URL = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/ping%20(7).png";
 export const GENERATOR_REF_URL = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/ping%20(7).png";
-export const LORE_IMAGE_URL = "https://pbs.twimg.com/media/HAI5ze0W8AACEhD?format=jpg&name=large";
+export const LORE_IMAGE_URL = "https://pbs.twimg.com/media/HAI5ze0W8AACEhD?format=jpg&name=large"; 
 
-// Updated Links - DexScreener updated with new CA
 export const DEXSCREENER_URL = "https://dexscreener.com/solana/9S8edqWxoWz5LYLnxWUmWBJnePg35WfdYQp7HQkUpump"; 
 export const BUY_URL = "https://pump.fun/coin/9S8edqWxoWz5LYLnxWUmWBJnePg35WfdYQp7HQkUpump";
 
-// Gallery removed as requested
 export const MEME_GALLERY_IMAGES: string[] = [];
 
+// Prompts tailored for the Goyim character
 export const RANDOM_PROMPTS = [
-  "Goyim character looking at a green candle chart with excitement",
-  "Goyim character holding a bag of gold coins",
-  "Goyim character shaking hands with a businessman",
-  "Goyim character wearing a suit on Wall Street",
-  "Goyim character relaxing on a yacht",
-  "Goyim character discovering a hidden treasure chest",
-  "Goyim character at a grand feast",
-  "Goyim character reading an ancient scroll",
-  "Goyim character planting a tree of prosperity",
-  "Goyim character pointing to the moon",
-  "Goyim character in a futuristic city",
-  "Goyim character holding a diamond",
-  "Goyim character celebrating with confetti",
-  "Goyim character driving a luxury car",
-  "Goyim character standing on a mountain peak",
-  "Goyim character analyzing market data on multiple screens",
-  "Goyim character wearing sunglasses and smiling",
-  "Goyim character holding the earth in his hands",
-  "Goyim character building a digital empire",
-  "Goyim character surrounded by blue and white lights"
+  "wearing a pinstripe suit on Wall Street",
+  "holding a stack of gold bars",
+  "sitting in a luxury leather chair with a cigar",
+  "wearing a king's crown and royal robe",
+  "operating a complex trading terminal",
+  "wearing a futuristic space suit on the moon",
+  "holding a ledger book with a grin",
+  "wearing high-fashion designer sunglasses",
+  "driving a vintage luxury convertible",
+  "wearing a McDonald's manager uniform",
+  "standing in front of a bank vault",
+  "wearing a tuxedo at a gala",
+  "holding a diamond with laser eyes",
+  "wearing a heavy gold chain and hoodie",
+  "wearing a captain's hat on a yacht",
+  "counting stacks of cash",
+  "wearing a virtual reality headset",
+  "wearing a construction helmet holding blueprints",
+  "wearing a chef's hat cooking a feast",
+  "playing chess with golden pieces"
 ];
 
 export const SOCIAL_LINKS = {

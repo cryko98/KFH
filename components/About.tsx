@@ -1,5 +1,5 @@
 import React from 'react';
-import { Globe, Users, Shield, Rocket, ArrowUpRight } from 'lucide-react';
+import { Globe, Users, Shield, Rocket } from 'lucide-react';
 import { TOKEN_TICKER } from '../constants';
 
 const About: React.FC = () => {
@@ -13,7 +13,7 @@ const About: React.FC = () => {
                 THE <span className="text-zion-gold">MISSION</span>
             </h2>
             <p className="text-stone-400 text-xl leading-relaxed font-light mb-8">
-               We are building a monument on the blockchain. <span className="text-white font-bold">{TOKEN_TICKER}</span> is not merely a token; it is a cultural statement. A decentralised reclamation of power.
+               We are building a monument on the blockchain. <span className="text-white font-bold">{TOKEN_TICKER}</span> is not merely a token; it is a cultural statement. A decentralized reclamation of power.
             </p>
             
             <div className="border-l border-white/20 pl-8 space-y-8">

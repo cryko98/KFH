@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Dice5, Download, Loader2, Image as ImageIcon, Zap } from 'lucide-react';
+import { Sparkles, Dice5, Loader2, Image as ImageIcon, Zap } from 'lucide-react';
 import { generateGoyimMeme } from '../services/geminiService';
 import { RANDOM_PROMPTS } from '../constants';
 
@@ -36,9 +36,6 @@ const MemeGenerator: React.FC = () => {
 
   return (
     <section id="generator" className="py-24 bg-zion-black relative overflow-hidden">
-      {/* Abstract Shapes */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-zion-gold/5 to-transparent rounded-full blur-[150px] pointer-events-none"></div>
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center mb-16 reveal-on-scroll">
@@ -49,7 +46,7 @@ const MemeGenerator: React.FC = () => {
             <span className="text-zion-gold">GOYIM</span> CREATION SUITE
           </h2>
           <p className="text-stone-400 text-lg font-light max-w-2xl mx-auto">
-            Harness the power of the protocol. Generate propaganda for the nations.
+             Harness the power of the protocol. Generate propaganda for the nations.
           </p>
         </div>
 
@@ -76,7 +73,7 @@ const MemeGenerator: React.FC = () => {
                   <button
                     onClick={() => handleGenerate()}
                     disabled={isLoading || !prompt}
-                    className="w-full bg-white text-black h-14 font-bold tracking-widest uppercase hover:bg-zion-gold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group/btn"
+                    className="w-full bg-stone-200 text-black h-14 font-bold tracking-widest uppercase hover:bg-zion-gold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group/btn"
                   >
                     {isLoading ? <Loader2 className="animate-spin w-5 h-5" /> : (
                       <>
@@ -94,7 +91,7 @@ const MemeGenerator: React.FC = () => {
                         className="text-xs font-bold text-stone-400 hover:text-white flex items-center gap-2 uppercase tracking-wider transition-colors"
                       >
                         <Dice5 className="w-4 h-4" />
-                        Randomize
+                        RANDOMIZE
                       </button>
                   </div>
                 </div>
@@ -110,7 +107,6 @@ const MemeGenerator: React.FC = () => {
           {/* Output - 3 cols */}
           <div className="lg:col-span-3 reveal-on-scroll delay-100">
              <div className="bg-black border border-white/10 h-[500px] w-full flex items-center justify-center relative overflow-hidden group">
-                {/* Grid Overlay */}
                 <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
                 
                 {isLoading ? (
@@ -123,7 +119,7 @@ const MemeGenerator: React.FC = () => {
                   </div>
                 ) : generatedImage ? (
                   <div className="relative w-full h-full p-4">
-                    <div className="w-full h-full border border-white/5 relative">
+                    <div className="w-full h-full border border-white/5 relative bg-white/5">
                       <img src={generatedImage} alt="Generated Meme" className="w-full h-full object-contain" />
                       <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-4 backdrop-blur-sm">
                         <span className="text-zion-gold font-mono text-xs tracking-widest mb-2">GENERATION COMPLETE</span>

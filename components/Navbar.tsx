@@ -27,7 +27,6 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center flex-shrink-0 group cursor-pointer">
              <div className="relative">
-               <div className="absolute inset-0 bg-zion-gold blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full"></div>
                <img 
                  src={HERO_IMAGE_URL} 
                  alt="Logo" 
