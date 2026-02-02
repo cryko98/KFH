@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Sparkles, Dice5, Loader2, Image as ImageIcon, Zap } from 'lucide-react';
+import { Sparkles, Dice5, Loader2, Zap } from 'lucide-react';
 import { generateGoyimMeme } from '../services/geminiService';
-import { RANDOM_PROMPTS } from '../constants';
+import { RANDOM_PROMPTS, GENERATOR_REF_URL } from '../constants';
 
 const MemeGenerator: React.FC = () => {
   const [prompt, setPrompt] = useState('');
@@ -15,6 +15,9 @@ const MemeGenerator: React.FC = () => {
 
     setIsLoading(true);
     setError(null);
+    // Note: We don't clear generatedImage here so the previous image (or default) stays visible while loading, 
+    // or we could clear it to show the loader more prominently. 
+    // Based on "robust" request, let's clear it to show the loading state clearly inside the box.
     setGeneratedImage(null);
 
     try {
@@ -33,6 +36,9 @@ const MemeGenerator: React.FC = () => {
     setPrompt(randomPrompt);
     handleGenerate(randomPrompt);
   };
+
+  // Determine which image to show: The generated one, or the Default Reference URL
+  const displayImage = generatedImage || GENERATOR_REF_URL;
 
   return (
     <section id="generator" className="py-24 bg-zion-black relative overflow-hidden">
@@ -117,26 +123,25 @@ const MemeGenerator: React.FC = () => {
                     </div>
                     <p className="text-zion-gold font-mono text-sm animate-pulse">PROCESSING NEURAL NETWORK...</p>
                   </div>
-                ) : generatedImage ? (
+                ) : (
                   <div className="relative w-full h-full p-4">
                     <div className="w-full h-full border border-white/5 relative bg-white/5">
-                      <img src={generatedImage} alt="Generated Meme" className="w-full h-full object-contain" />
-                      <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-4 backdrop-blur-sm">
-                        <span className="text-zion-gold font-mono text-xs tracking-widest mb-2">GENERATION COMPLETE</span>
-                        <a 
-                          href={generatedImage} 
-                          download="goyim-artifact.png"
-                          className="bg-white text-black px-8 py-3 font-bold uppercase tracking-wider hover:bg-zion-gold transition-colors"
-                        >
-                          Download Artifact
-                        </a>
-                      </div>
+                      <img src={displayImage} alt="Meme Subject" className="w-full h-full object-contain" />
+                      
+                      {/* Only show download button if it's a NEW generated image */}
+                      {generatedImage && (
+                        <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-4 backdrop-blur-sm">
+                          <span className="text-zion-gold font-mono text-xs tracking-widest mb-2">GENERATION COMPLETE</span>
+                          <a 
+                            href={generatedImage} 
+                            download="goyim-artifact.png"
+                            className="bg-white text-black px-8 py-3 font-bold uppercase tracking-wider hover:bg-zion-gold transition-colors"
+                          >
+                            Download Artifact
+                          </a>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                ) : (
-                  <div className="text-center text-stone-600 z-10">
-                    <ImageIcon className="w-16 h-16 mx-auto mb-4 opacity-20" />
-                    <p className="font-mono text-xs tracking-widest uppercase">System Ready // Awaiting Input</p>
                   </div>
                 )}
              </div>
