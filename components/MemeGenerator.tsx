@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles, Dice5, Download, Loader2, Image as ImageIcon, Zap } from 'lucide-react';
-import { generateKungFuMeme } from '../services/geminiService';
+import { generateGoyimMeme } from '../services/geminiService';
 import { RANDOM_PROMPTS } from '../constants';
 
 const MemeGenerator: React.FC = () => {
@@ -18,7 +18,7 @@ const MemeGenerator: React.FC = () => {
     setGeneratedImage(null);
 
     try {
-      const imageBase64 = await generateKungFuMeme(promptToUse);
+      const imageBase64 = await generateGoyimMeme(promptToUse);
       setGeneratedImage(imageBase64);
     } catch (err: any) {
       setError(err.message || "Failed to generate meme. Try again later.");
