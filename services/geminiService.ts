@@ -2,73 +2,93 @@ import { GoogleGenAI } from "@google/genai";
 import { GENERATOR_REF_URL } from "../constants";
 
 // Helper to convert image URL to Base64
-const imageUrlToBase64 = async (url: string): Promise<string> => {
+// Handles CORS by resolving to null if the fetch fails, allowing the main function to fallback
+const imageUrlToBase64 = async (url: string): Promise<string | null> => {
   try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Failed to fetch reference image');
+    // Attempt to fetch with CORS mode enabled
+    const response = await fetch(url, { mode: 'cors', credentials: 'omit' });
+    
+    if (!response.ok) {
+      console.warn('Failed to fetch reference image:', response.statusText);
+      return null;
+    }
+    
     const blob = await response.blob();
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64String = reader.result as string;
-        // Remove the data URL prefix (e.g., "data:image/png;base64,")
-        const base64Data = base64String.split(',')[1];
-        resolve(base64Data);
+        // Remove the data URL prefix if present
+        if (base64String.includes(',')) {
+           resolve(base64String.split(',')[1]);
+        } else {
+           resolve(base64String);
+        }
       };
-      reader.onerror = reject;
+      reader.onerror = () => {
+        console.warn('Failed to read blob as base64');
+        resolve(null);
+      };
       reader.readAsDataURL(blob);
     });
   } catch (error) {
-    console.warn("CORS or Fetch error for reference image, using pure text description fallback.", error);
-    return "";
+    // This catches CORS errors (TypeError: Failed to fetch)
+    console.warn("CORS or Network error fetching reference image. Falling back to text description.", error);
+    return null;
   }
 };
 
 export const generateKungFuMeme = async (prompt: string): Promise<string> => {
+  // Check for API key existence
+  if (!process.env.API_KEY) {
+     throw new Error("API Key is missing.");
+  }
+
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-  
-  // Use the latest standard model for image tasks
   const model = 'gemini-2.5-flash-image';
 
-  // Try to get the reference image (the Goyim meme character)
-  const referenceImageBase64 = await imageUrlToBase64(GENERATOR_REF_URL);
-
   try {
+    // 1. Attempt to fetch the reference image
+    const referenceImageBase64 = await imageUrlToBase64(GENERATOR_REF_URL);
     let contents;
 
-    // If we successfully got the base64, we use image-to-image generation/editing
+    // 2. Build contents based on whether we successfully got the image
     if (referenceImageBase64) {
+      // IMAGE-TO-IMAGE MODE
       contents = {
         parts: [
           {
             inlineData: {
-              mimeType: 'image/jpeg',
+              mimeType: 'image/png', // Assuming PNG based on URL, but generic is fine usually
               data: referenceImageBase64
             }
           },
           {
             text: `Generate a new image based on this reference character.
-            The character is a stylised, meme-like figure often associated with the 'Goyim' meme.
+            The character is a stylised, meme-like chubby hamster/creature (The 'Goyim' mascot).
             
             Action/Scene: ${prompt}.
             
             Guidelines:
-            - Style: Keep the meme aesthetic, slightly hand-drawn or digital art style similar to the reference.
-            - Character: Must resemble the reference character provided.
+            - Style: High quality digital art or meme style, retaining the likeness of the reference character.
+            - Character: Must resemble the reference character provided (fur color, shape, facial features).
             - Atmosphere: Funny, crypto-native, viral.
             - Composition: Clear subject.`
           }
         ]
       };
     } else {
-      // Fallback: Text-to-Image
+      // TEXT-ONLY FALLBACK MODE (Handles CORS/Fetch failures)
       contents = {
         parts: [
           {
-            text: `Generate a meme image.
-            Subject: A funny 'Goyim' meme character (often depicted as a joyful, slightly awkward smiling figure).
-            Action: ${prompt}. 
-            Style: Viral internet meme style, digital art.`
+            text: `Generate a high-quality meme image.
+            
+            Character Description: A cute, chubby, heroic hamster character (The 'Goyim' mascot), looking very similar to "Moodeng" or a Pygmy Hippo style hamster. It has smooth skin/fur, round body, and expressive face.
+            
+            Scene/Action: ${prompt}
+            
+            Style: Viral internet meme, cinematic lighting, vibrant colors, golden accents, highly detailed.`
           }
         ]
       };
@@ -79,7 +99,6 @@ export const generateKungFuMeme = async (prompt: string): Promise<string> => {
       contents: contents
     });
 
-    // Extract image from response (iterating through parts to find inlineData)
     const parts = response.candidates?.[0]?.content?.parts;
     if (parts) {
       for (const part of parts) {
@@ -89,10 +108,13 @@ export const generateKungFuMeme = async (prompt: string): Promise<string> => {
       }
     }
     
-    throw new Error("No image generated from the model.");
+    throw new Error("The model generated text instead of an image. Please try refining your prompt.");
 
   } catch (error: any) {
     console.error("Gemini Generation Error:", error);
+    if (error.message?.includes('429')) {
+      throw new Error("Too many requests. Please wait a moment and try again.");
+    }
     throw new Error(error.message || "Failed to generate meme.");
   }
 };

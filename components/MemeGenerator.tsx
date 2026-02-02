@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Dice5, Download, Loader2, Image as ImageIcon } from 'lucide-react';
+import { Sparkles, Dice5, Download, Loader2, Image as ImageIcon, Zap } from 'lucide-react';
 import { generateKungFuMeme } from '../services/geminiService';
 import { RANDOM_PROMPTS } from '../constants';
 
@@ -35,88 +35,117 @@ const MemeGenerator: React.FC = () => {
   };
 
   return (
-    <section id="generator" className="py-20 bg-goyim-light relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="generator" className="py-24 bg-zion-black relative overflow-hidden">
+      {/* Abstract Shapes */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-zion-gold/5 to-transparent rounded-full blur-[150px] pointer-events-none"></div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 text-goyim-dark">
-            <span className="text-goyim-red">GOYIM</span> GENERATOR
+        <div className="text-center mb-16 reveal-on-scroll">
+          <div className="inline-block px-4 py-1 border border-zion-gold/30 rounded-full mb-4">
+             <span className="text-xs font-mono text-zion-gold uppercase tracking-[0.3em]">AI Powered Engine</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 text-white">
+            <span className="text-zion-gold">GOYIM</span> CREATION SUITE
           </h2>
-          <p className="text-stone-600 text-lg">
-            Create viral memes for the nations.
+          <p className="text-stone-400 text-lg font-light max-w-2xl mx-auto">
+            Harness the power of the protocol. Generate propaganda for the nations.
           </p>
         </div>
 
-        <div className="bg-white border border-goyim-red/20 rounded-2xl p-6 md:p-8 shadow-xl">
-          <div className="flex flex-col gap-6">
-            
-            {/* Input Section */}
-            <div className="flex flex-col md:flex-row gap-4">
-              <input
-                type="text"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                placeholder="Ex: Goyim finding a gem on Solana..."
-                className="flex-1 bg-stone-50 border border-stone-300 rounded-xl px-5 py-4 text-goyim-dark placeholder-stone-400 focus:outline-none focus:border-goyim-red focus:ring-1 focus:ring-goyim-red transition-all"
-                disabled={isLoading}
-              />
-              <button
-                onClick={() => handleGenerate()}
-                disabled={isLoading || !prompt}
-                className="bg-goyim-red hover:bg-goyim-dark disabled:opacity-50 disabled:cursor-not-allowed text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center min-w-[140px] shadow-lg shadow-goyim-red/20"
-              >
-                {isLoading ? <Loader2 className="animate-spin w-5 h-5" /> : <><Sparkles className="w-5 h-5 mr-2" /> CREATE</>}
-              </button>
-            </div>
+        <div className="grid lg:grid-cols-5 gap-8">
+          
+          {/* Controls - 2 cols */}
+          <div className="lg:col-span-2 space-y-6 reveal-on-scroll">
+             <div className="bg-zion-charcoal border border-white/5 p-8 h-full flex flex-col justify-between group hover:border-zion-gold/20 transition-colors duration-500">
+                
+                <div className="space-y-6">
+                   <label className="text-sm font-bold text-white uppercase tracking-widest flex items-center gap-2">
+                     <Zap className="w-4 h-4 text-zion-gold" />
+                     Prompt Input
+                   </label>
+                   
+                   <textarea
+                    value={prompt}
+                    onChange={(e) => setPrompt(e.target.value)}
+                    placeholder="Describe your vision... (e.g., Goyim trading on Wall Street)"
+                    className="w-full h-40 bg-black border border-white/10 p-4 text-white placeholder-stone-600 focus:outline-none focus:border-zion-gold transition-colors font-mono text-sm resize-none"
+                    disabled={isLoading}
+                  />
 
-            <div className="flex justify-center">
-               <button
-                onClick={handleRandom}
-                disabled={isLoading}
-                className="text-stone-500 hover:text-goyim-red text-sm font-semibold flex items-center gap-2 transition-colors"
-              >
-                <Dice5 className="w-4 h-4" />
-                ROLL RANDOM IDEA
-              </button>
-            </div>
+                  <button
+                    onClick={() => handleGenerate()}
+                    disabled={isLoading || !prompt}
+                    className="w-full bg-white text-black h-14 font-bold tracking-widest uppercase hover:bg-zion-gold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group/btn"
+                  >
+                    {isLoading ? <Loader2 className="animate-spin w-5 h-5" /> : (
+                      <>
+                        <Sparkles className="w-5 h-5 group-hover/btn:animate-spin" /> 
+                        Generate Artifact
+                      </>
+                    )}
+                  </button>
 
-            {/* Error Message */}
-            {error && (
-              <div className="p-4 bg-red-50 border border-red-100 rounded-xl text-red-600 text-center">
-                {error}
-              </div>
-            )}
-
-            {/* Output Area */}
-            <div className="aspect-square md:aspect-video w-full bg-stone-100 rounded-xl flex items-center justify-center overflow-hidden border-2 border-dashed border-stone-300 relative group">
-              {isLoading ? (
-                <div className="text-center">
-                  <div className="w-16 h-16 border-4 border-goyim-red border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                  <p className="text-stone-500 animate-pulse">Generating...</p>
-                </div>
-              ) : generatedImage ? (
-                <div className="relative w-full h-full">
-                  <img src={generatedImage} alt="Generated Meme" className="w-full h-full object-contain" />
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                    <a 
-                      href={generatedImage} 
-                      download="goyim-meme.png"
-                      className="bg-white text-black p-3 rounded-full hover:scale-110 transition-transform"
-                      title="Download"
-                    >
-                      <Download className="w-6 h-6" />
-                    </a>
+                  <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                      <span className="text-xs text-stone-500 font-mono">MODELS: GEMINI 2.5 FLASH</span>
+                      <button
+                        onClick={handleRandom}
+                        disabled={isLoading}
+                        className="text-xs font-bold text-stone-400 hover:text-white flex items-center gap-2 uppercase tracking-wider transition-colors"
+                      >
+                        <Dice5 className="w-4 h-4" />
+                        Randomize
+                      </button>
                   </div>
                 </div>
-              ) : (
-                <div className="text-center text-stone-400">
-                  <ImageIcon className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                  <p>Your creation will appear here</p>
-                </div>
-              )}
-            </div>
-            
+
+                {error && (
+                  <div className="mt-4 p-3 bg-red-900/20 border border-red-900/50 text-red-400 text-xs font-mono">
+                    ERROR: {error}
+                  </div>
+                )}
+             </div>
           </div>
+
+          {/* Output - 3 cols */}
+          <div className="lg:col-span-3 reveal-on-scroll delay-100">
+             <div className="bg-black border border-white/10 h-[500px] w-full flex items-center justify-center relative overflow-hidden group">
+                {/* Grid Overlay */}
+                <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                
+                {isLoading ? (
+                  <div className="text-center z-10">
+                    <div className="relative w-24 h-24 mx-auto mb-6">
+                       <div className="absolute inset-0 border-t-2 border-zion-gold rounded-full animate-spin"></div>
+                       <div className="absolute inset-2 border-r-2 border-white rounded-full animate-spin reverse"></div>
+                    </div>
+                    <p className="text-zion-gold font-mono text-sm animate-pulse">PROCESSING NEURAL NETWORK...</p>
+                  </div>
+                ) : generatedImage ? (
+                  <div className="relative w-full h-full p-4">
+                    <div className="w-full h-full border border-white/5 relative">
+                      <img src={generatedImage} alt="Generated Meme" className="w-full h-full object-contain" />
+                      <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-4 backdrop-blur-sm">
+                        <span className="text-zion-gold font-mono text-xs tracking-widest mb-2">GENERATION COMPLETE</span>
+                        <a 
+                          href={generatedImage} 
+                          download="goyim-artifact.png"
+                          className="bg-white text-black px-8 py-3 font-bold uppercase tracking-wider hover:bg-zion-gold transition-colors"
+                        >
+                          Download Artifact
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center text-stone-600 z-10">
+                    <ImageIcon className="w-16 h-16 mx-auto mb-4 opacity-20" />
+                    <p className="font-mono text-xs tracking-widest uppercase">System Ready // Awaiting Input</p>
+                  </div>
+                )}
+             </div>
+          </div>
+
         </div>
       </div>
     </section>

@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X, Star } from 'lucide-react';
 import { TOKEN_TICKER, HERO_IMAGE_URL, BUY_URL } from '../constants';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
     { label: 'Lore', href: '#lore' },
@@ -13,16 +22,19 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-goyim-red/20 shadow-sm">
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-zion-black/80 backdrop-blur-xl border-b border-white/5 py-2' : 'bg-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <div className="flex items-center flex-shrink-0">
-             <img 
-               src={HERO_IMAGE_URL} 
-               alt="Logo" 
-               className="h-12 w-12 rounded-full border-2 border-goyim-red object-cover mr-3 shadow-md"
-             />
-             <span className="text-2xl font-display font-bold text-goyim-red tracking-wider uppercase">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center flex-shrink-0 group cursor-pointer">
+             <div className="relative">
+               <div className="absolute inset-0 bg-zion-gold blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full"></div>
+               <img 
+                 src={HERO_IMAGE_URL} 
+                 alt="Logo" 
+                 className="h-10 w-10 rounded-full border border-zion-gold/50 object-cover mr-3 relative z-10"
+               />
+             </div>
+             <span className="text-xl font-display font-bold text-white tracking-widest uppercase group-hover:text-zion-gold transition-colors">
                {TOKEN_TICKER}
              </span>
           </div>
@@ -33,7 +45,7 @@ const Navbar: React.FC = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-goyim-dark hover:text-goyim-red px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 uppercase tracking-wide"
+                  className="text-stone-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 uppercase tracking-widest hover:tracking-[0.2em]"
                 >
                   {item.label}
                 </a>
@@ -42,9 +54,9 @@ const Navbar: React.FC = () => {
                 href={BUY_URL} 
                 target="_blank" 
                 rel="noreferrer"
-                className="bg-goyim-red hover:bg-goyim-dark text-white px-6 py-2 rounded-full font-bold transition-all transform hover:scale-105 flex items-center shadow-lg shadow-goyim-red/30"
+                className="bg-white text-zion-black hover:bg-zion-gold hover:text-black px-6 py-2 rounded-sm font-bold transition-all duration-300 transform hover:-translate-y-0.5 flex items-center shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
               >
-                <Star className="w-4 h-4 mr-2 fill-white" />
+                <Star className="w-3 h-3 mr-2 fill-current" />
                 BUY NOW
               </a>
             </div>
@@ -53,7 +65,7 @@ const Navbar: React.FC = () => {
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-goyim-dark hover:text-goyim-red hover:bg-goyim-light focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-zion-gold focus:outline-none"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -62,13 +74,13 @@ const Navbar: React.FC = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-goyim-red/20">
+        <div className="md:hidden bg-zion-black border-t border-white/10 absolute w-full">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-goyim-dark hover:text-goyim-red block px-3 py-2 rounded-md text-base font-medium"
+                className="text-white hover:text-zion-gold block px-3 py-2 text-base font-medium tracking-widest"
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}
@@ -78,9 +90,9 @@ const Navbar: React.FC = () => {
                 href={BUY_URL} 
                 target="_blank" 
                 rel="noreferrer"
-                className="w-full mt-4 bg-goyim-red text-center text-white block px-3 py-3 rounded-md font-bold shadow-md"
+                className="w-full mt-4 bg-white text-zion-black text-center block px-3 py-3 font-bold tracking-widest hover:bg-zion-gold transition-colors"
               >
-                BUY {TOKEN_TICKER}
+                BUY NOW
               </a>
           </div>
         </div>

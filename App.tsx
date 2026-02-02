@@ -9,16 +9,16 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-goyim-light text-goyim-dark selection:bg-goyim-red selection:text-white font-sans bg-star-pattern">
+    <div className="min-h-screen bg-zion-black text-zion-white selection:bg-zion-gold selection:text-zion-black font-sans bg-star-pattern-dark">
       <Navbar />
       <main>
         <Hero />
         <Lore />
-        <div className="border-t border-goyim-red/10"></div>
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-zion-gold/30 to-transparent"></div>
         <MemeGenerator />
-        <div className="border-t border-goyim-red/10"></div>
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-zion-gold/30 to-transparent"></div>
         <About />
-        <div className="border-t border-goyim-red/10"></div>
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-zion-gold/30 to-transparent"></div>
         <Chart />
       </main>
       <Footer />

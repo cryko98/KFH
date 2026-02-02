@@ -1,47 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Goyim ($goyim)</title>
-    <link rel="icon" type="image/png" href="https://pbs.twimg.com/media/HAIALZjXsAAt4gs?format=jpg&name=small" />
+    <link rel="icon" type="image/png" href="https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/ping%20(7).png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              'goyim-red': '#D6001C', // Logo Red
-              'goyim-dark': '#8A0012', // Darker Red for text
-              'goyim-light': '#FFF0F0', // Very Light Red/Pink tint
-              'goyim-white': '#FFFFFF', 
-              'goyim-silver': '#C0C0C0',
-              'goyim-gold': '#DAA520',
+              'zion-black': '#050505',
+              'zion-charcoal': '#121212',
+              'zion-gray': '#2A2A2A',
+              'zion-white': '#FFFFFF',
+              'zion-silver': '#E5E5E5',
+              'zion-gold': '#D4AF37', // Metallic Gold for Jewish financier aesthetic
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
-              display: ['Impact', 'sans-serif'],
+              display: ['Playfair Display', 'serif'], // Luxurious serif for headers
+              mono: ['JetBrains Mono', 'monospace'],
             },
             backgroundImage: {
-              // Star of David pattern in Red
-              'star-pattern': "url('data:image/svg+xml,%3Csvg width=\\'20\\' height=\\'20\\' viewBox=\\'0 0 20 20\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cpath d=\\'M10 0l2.5 7.5h7.5l-6 4.5 2.5 7.5-6-4.5-6 4.5 2.5-7.5-6-4.5h7.5z\\' fill=\\'%23D6001C\\' fill-opacity=\\'0.05\\'/%3E%3C/svg%3E')",
+              // Subtle Star of David pattern
+              'star-pattern-dark': "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cpath d=\\'M30 0l7.5 22.5h22.5l-18 13.5 7.5 22.5-18-13.5-18 13.5 7.5-22.5-18-13.5h22.5z\\' fill=\\'%23D4AF37\\' fill-opacity=\\'0.03\\'/%3E%3C/svg%3E')",
+              'tallit-stripes': "repeating-linear-gradient(90deg, transparent, transparent 49px, #121212 49px, #121212 51px)",
+              'luxury-gradient': "linear-gradient(135deg, #121212 0%, #050505 100%)",
+            },
+            animation: {
+              'float': 'float 8s ease-in-out infinite',
+              'fade-in-up': 'fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'reveal': 'reveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'glow': 'glow 3s ease-in-out infinite alternate',
+              'scroll-text': 'scrollText 20s linear infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                '50%': { transform: 'translateY(-20px) rotate(1deg)' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(40px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              reveal: {
+                '0%': { clipPath: 'inset(0 100% 0 0)' },
+                '100%': { clipPath: 'inset(0 0 0 0)' },
+              },
+              glow: {
+                '0%': { boxShadow: '0 0 5px rgba(212, 175, 55, 0.2)' },
+                '100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.6), 0 0 10px rgba(255,255,255,0.1)' },
+              },
+              scrollText: {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-50%)' },
+              }
             }
           },
         },
       }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <style>
       body {
-        background-color: #FFF0F0;
-        color: #8A0012;
+        background-color: #050505;
+        color: #FFFFFF;
       }
       .scroll-hide::-webkit-scrollbar {
           display: none;
       }
-      .text-shadow-glow {
-        text-shadow: 0 0 10px rgba(214, 0, 28, 0.4);
+      .gold-glow {
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+      }
+      .glass-panel {
+        background: rgba(18, 18, 18, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      /* Reveal on scroll observer classes */
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-on-scroll.active {
+        opacity: 1;
+        transform: translateY(0);
       }
     </style>
   <script type="importmap">

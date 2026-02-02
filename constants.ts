@@ -1,8 +1,8 @@
 export const TOKEN_NAME = "Goyim";
 export const TOKEN_TICKER = "$goyim";
 export const CA = "9S8edqWxoWz5LYLnxWUmWBJnePg35WfdYQp7HQkUpump";
-export const HERO_IMAGE_URL = "https://pbs.twimg.com/media/HAIALZjXsAAt4gs?format=jpg&name=small";
-export const GENERATOR_REF_URL = "https://pbs.twimg.com/media/HAH-CulWwAE-bVt?format=jpg&name=small";
+export const HERO_IMAGE_URL = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/ping%20(7).png";
+export const GENERATOR_REF_URL = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/ping%20(7).png";
 export const LORE_IMAGE_URL = "https://pbs.twimg.com/media/HAI5ze0W8AACEhD?format=jpg&name=large";
 
 // Updated Links - DexScreener updated with new CA

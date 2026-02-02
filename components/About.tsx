@@ -1,54 +1,79 @@
 import React from 'react';
-import { Globe, Users } from 'lucide-react';
+import { Globe, Users, Shield, Rocket, ArrowUpRight } from 'lucide-react';
 import { TOKEN_TICKER } from '../constants';
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-32 bg-zion-black border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
+        <div className="grid md:grid-cols-2 gap-20 mb-32 reveal-on-scroll">
           <div>
-            <h2 className="text-4xl font-display font-bold mb-6 text-goyim-dark">ABOUT <span className="text-goyim-red">{TOKEN_TICKER}</span></h2>
-            <p className="text-stone-600 text-lg leading-relaxed mb-6">
-              In a world of fleeting trends, the nations rise. $goyim captures the cultural zeitgeist, turning a viral term into a decentralized movement.
+            <h2 className="text-5xl font-display font-bold mb-10 text-white">
+                THE <span className="text-zion-gold">MISSION</span>
+            </h2>
+            <p className="text-stone-400 text-xl leading-relaxed font-light mb-8">
+               We are building a monument on the blockchain. <span className="text-white font-bold">{TOKEN_TICKER}</span> is not merely a token; it is a cultural statement. A decentralised reclamation of power.
             </p>
-            <p className="text-stone-600 text-lg leading-relaxed">
-              Transparent, community-driven, and historically significant. 
-            </p>
+            
+            <div className="border-l border-white/20 pl-8 space-y-8">
+               <div>
+                  <h3 className="text-white font-bold uppercase tracking-widest text-sm mb-2">Community Takeover</h3>
+                  <p className="text-stone-500 font-mono text-sm">
+                    The original dev faded. The community stepped up. We are now self-governed, resilient, and aiming for the stars.
+                  </p>
+               </div>
+               <div>
+                  <h3 className="text-white font-bold uppercase tracking-widest text-sm mb-2">Market Dominance</h3>
+                  <p className="text-stone-500 font-mono text-sm">
+                    Current Cap: 2M+. Target: 10M+. The math is simple, the momentum is undeniable.
+                  </p>
+               </div>
+            </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-             <div className="bg-goyim-light p-6 rounded-2xl border border-goyim-red/20 shadow-md transform hover:-translate-y-2 transition-transform">
-                <Globe className="w-10 h-10 text-goyim-red mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-goyim-dark">Global</h3>
-                <p className="text-sm text-stone-500">A term known across the world, united on the blockchain.</p>
-             </div>
-             <div className="bg-goyim-light p-6 rounded-2xl border border-goyim-red/20 shadow-md transform hover:-translate-y-2 transition-transform mt-8">
-                <Users className="w-10 h-10 text-goyim-dark mb-4" />
-                <h3 className="text-xl font-bold mb-2 text-goyim-dark">Community</h3>
-                <p className="text-sm text-stone-500">The nations coming together for one ticker.</p>
-             </div>
+          
+          <div className="grid gap-6">
+             {[
+               { icon: Globe, title: "Global Reach", desc: "A universal term recognized in every language." },
+               { icon: Users, title: "No Cabal", desc: "Fair launch. No insider allocation. Pure market dynamics." },
+               { icon: Shield, title: "Unruggable", desc: "Liquidity burnt. Contract renounced. Community owned." }
+             ].map((item, idx) => (
+               <div key={idx} className="group bg-zion-charcoal border border-white/5 p-8 hover:border-zion-gold/50 hover:bg-white/5 transition-all duration-300 flex items-start gap-6">
+                  <div className="p-4 bg-black border border-white/10 group-hover:border-zion-gold/50 transition-colors">
+                    <item.icon className="w-6 h-6 text-white group-hover:text-zion-gold" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-display text-white mb-2 group-hover:text-zion-gold transition-colors">{item.title}</h3>
+                    <p className="text-stone-500 font-light text-sm">{item.desc}</p>
+                  </div>
+               </div>
+             ))}
           </div>
         </div>
 
-        <div id="tokenomics" className="bg-gradient-to-r from-goyim-red to-goyim-dark rounded-3xl p-8 md:p-12 text-center relative overflow-hidden shadow-2xl">
-           <div className="absolute top-0 left-0 w-full h-full opacity-10" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/cubes.png")' }}></div>
+        {/* Tokenomics - Panoramic */}
+        <div className="reveal-on-scroll relative overflow-hidden rounded-none border-y border-white/10 py-20 bg-black">
+           <div className="absolute inset-0 bg-tallit-stripes opacity-10 pointer-events-none"></div>
            
-           <h2 className="text-4xl font-display font-bold mb-12 relative z-10 text-white">TOKENOMICS</h2>
-           
-           <div className="grid md:grid-cols-3 gap-8 relative z-10">
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
-                 <div className="text-5xl font-bold mb-2 text-goyim-gold">1B</div>
-                 <div className="text-sm uppercase tracking-widest opacity-80 text-white">Total Supply</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
-                 <div className="text-5xl font-bold mb-2 text-goyim-gold">0%</div>
-                 <div className="text-sm uppercase tracking-widest opacity-80 text-white">Tax</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
-                 <div className="text-5xl font-bold mb-2 text-goyim-gold">LP</div>
-                 <div className="text-sm uppercase tracking-widest opacity-80 text-white">Burnt</div>
-              </div>
+           <div className="relative z-10 text-center">
+               <div className="inline-flex items-center gap-2 border border-zion-gold/50 px-6 py-2 rounded-full text-zion-gold text-xs font-mono mb-10 tracking-widest uppercase">
+                   <Rocket className="w-3 h-3" /> Road to 10M
+               </div>
+               
+               <div className="grid md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-white/10 max-w-5xl mx-auto">
+                  <div className="px-8">
+                     <div className="text-6xl font-display text-white mb-2">1B</div>
+                     <div className="text-xs text-stone-500 uppercase tracking-[0.3em]">Total Supply</div>
+                  </div>
+                  <div className="px-8 pt-12 md:pt-0">
+                     <div className="text-6xl font-display text-white mb-2">0%</div>
+                     <div className="text-xs text-stone-500 uppercase tracking-[0.3em]">Buy/Sell Tax</div>
+                  </div>
+                  <div className="px-8 pt-12 md:pt-0">
+                     <div className="text-6xl font-display text-white mb-2">100%</div>
+                     <div className="text-xs text-stone-500 uppercase tracking-[0.3em]">LP Burnt</div>
+                  </div>
+               </div>
            </div>
         </div>
 
