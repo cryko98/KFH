@@ -24,7 +24,7 @@ const MemeGenerator: React.FC = () => {
       const imageBase64 = await generateGoyimMeme(promptToUse);
       setGeneratedImage(imageBase64);
     } catch (err: any) {
-      setError(err.message || "Failed to generate meme. Try again later.");
+      setError("Too many requests at the same time. Please try again.");
     } finally {
       setIsLoading(false);
     }
